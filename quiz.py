@@ -49,3 +49,7 @@ for num, (question, alternatives) in enumerate(QUESTIONS.items(), start=1):
         print(f"The answer is {correct_answer!r}, not {answer!r}")
 
 print(f"\nYou got {num_correct} correct out of {num} questions")
+
+#New: Step 2: Make your application user-friendly
+#Handle user errors
+#https://realpython.com/python-quiz-application/#handle-user-errors
