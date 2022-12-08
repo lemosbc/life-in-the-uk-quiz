@@ -1,5 +1,9 @@
 #quiz.py
 
+
+#Quiz questions in a dictionary
+#Correct answer is always the first alternative in the list
+
 QUESTIONS = {
     "Which king, who succeeded Henry VIII, died when he was 15 years old": [
         "Edward VI", "Charles I", "Harold", "Richard III"
@@ -18,11 +22,20 @@ QUESTIONS = {
         ]
 }
 
+#Functionality that displays question, alternatives and compares user
+#input with correct answer
+
 for question, alternatives in QUESTIONS.items():
     correct_answer = alternatives[0]
-    for alternative in sorted(alternatives):
-        print(f" - {alternative}")
-    answer = input(f"{question}? ")
+    #answers are sorted so that the correct answer is not always displayed first
+    sorted_alternatives = sorted(alternatives)
+    for label, alternative in enumerate(sorted_alternatives):
+        print(f" {label} {alternative}")
+    #takes user input and coverts to integer
+    #uses integer as index for alternatives
+    #compares alternative selected from user inputted index with correct_answer
+    answer_label = int(input(f"{question}? "))
+    answer = sorted_alternatives[answer_label]
     if answer == correct_answer:
         print("Correct!")
     else:
