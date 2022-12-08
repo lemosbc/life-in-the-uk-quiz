@@ -1,5 +1,6 @@
 #quiz.py
 
+from string import ascii_lowercase
 
 #Quiz questions in a dictionary
 #Correct answer is always the first alternative in the list
@@ -25,19 +26,23 @@ QUESTIONS = {
 #Functionality that displays question, alternatives and compares user
 #input with correct answer
 
-for question, alternatives in QUESTIONS.items():
+for num, (question, alternatives) in enumerate(QUESTIONS.items(), start=1):
+    print(f"\nQuestion {num}:")
+    print(f"{question}?")
     correct_answer = alternatives[0]
+    #string.ascii_lowercase uses letters to label alternatives
+    #zip() combines letters and alternatives into a dictionary
     #answers are sorted so that the correct answer is not always displayed first
-    sorted_alternatives = sorted(alternatives)
-    for label, alternative in enumerate(sorted_alternatives):
-        print(f" {label} {alternative}")
+    labeled_alternatives = dict(zip(ascii_lowercase, sorted(alternatives)))
+    for label, alternative in labeled_alternatives.items():
+        print(f" {label}) {alternative}")
     #takes user input and coverts to integer
     #uses integer as index for alternatives
     #compares alternative selected from user inputted index with correct_answer
-    answer_label = int(input(f"{question}? "))
-    answer = sorted_alternatives[answer_label]
+    answer_label = input(f"\nChoice? ")
+    answer = labeled_alternatives.get(answer_label)
     if answer == correct_answer:
-        print("Correct!")
+        print("⭐ Correct! ⭐")
     else:
         print(f"The answer is {correct_answer!r}, not {answer!r}")
 
