@@ -1,10 +1,13 @@
 #quiz.py
 
+import random
 from string import ascii_lowercase
+
+
+NUM_QUESTIONS_PER_QUIZ = 5
 
 #Quiz questions in a dictionary
 #Correct answer is always the first alternative in the list
-
 QUESTIONS = {
     "Which king, who succeeded Henry VIII, died when he was 15 years old": [
         "Edward VI", "Charles I", "Harold", "Richard III"
@@ -23,18 +26,28 @@ QUESTIONS = {
         ]
 }
 
+#sets the number of questions per session determined by which ever is lowest
+#NUM_QUESTIONS_PER_QUIZ or the length of the QUESTIONS dictionary
+num_questions = min(NUM_QUESTIONS_PER_QUIZ, len(QUESTIONS))
+
+#selects a random sample of questions in the QUESTIONS dict where 
+#k is the sample size determined by num_questions
+questions = random.sample(list(QUESTIONS.items()), k=num_questions)
+
 #Functionality that displays question, alternatives and compares user
 #input with correct answer
 
 num_correct = 0
-for num, (question, alternatives) in enumerate(QUESTIONS.items(), start=1):
+for num, (question, alternatives) in enumerate(questions, start=1):
     print(f"\nQuestion {num}:")
     print(f"{question}?")
     correct_answer = alternatives[0]
     #string.ascii_lowercase uses letters to label alternatives
     #zip() combines letters and alternatives into a dictionary
-    #answers are sorted so that the correct answer is not always displayed first
-    labeled_alternatives = dict(zip(ascii_lowercase, sorted(alternatives)))
+    #functionality to display alternatives in random order with each iteration
+    labeled_alternatives = dict(
+        zip(ascii_lowercase, random.sample(alternatives, k=len(alternatives)))
+        )
     for label, alternative in labeled_alternatives.items():
         print(f" {label}) {alternative}")
     
