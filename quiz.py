@@ -2,31 +2,19 @@
 
 import random
 from string import ascii_lowercase
-
+import pathlib
+#uses tomllib if available if not falls back on toml
+try:
+    import tomllib
+except ModuleNotFoundError:
+    import tomli as tomllib
 
 NUM_QUESTIONS_PER_QUIZ = 5
-
-#Quiz questions in a dictionary
-#Correct answer is always the first alternative in the list
-QUESTIONS = {
-    "Which king, who succeeded Henry VIII, died when he was 15 years old": [
-        "Edward VI", "Charles I", "Harold", "Richard III"
-        ], 
-    "Is the statement below TRUE or FALSE? Charles II marched into England with a Scottish army to reclaim his throne.": [
-        "True", "False"
-        ],
-    "Which country of the UK is not represented on the Union Flag": [
-        "Wales", "Scotland", "Northern Ireland", "England"
-        ],
-    "Which of these people was a great British playwright": [
-        "William Shakespeare", "Sir Francis Drake", "Geoffrey Chaucer", "William Caxton"
-        ],
-    "When were the first professional football clubs formed": [
-        "19th Century", "The Middle Ages", "17th Century", "20th Century"
-        ]
-}
-
-
+#uses pathlib to tell script that questions.toml is in the same folder
+#as quiz.py
+QUESTIONS_PATH = pathlib.Path(__file__).parent / "questions.toml"
+#reads the questions.toml file then loads the parsed strings into a dictionary
+QUESTIONS = tomllib.loads(QUESTIONS_PATH.read_text())
 
 #sets the number of questions per session determined by which ever is lowest
 #NUM_QUESTIONS_PER_QUIZ or the length of the QUESTIONS dictionary
