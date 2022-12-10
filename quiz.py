@@ -18,11 +18,13 @@ QUESTIONS = tomllib.loads(QUESTIONS_PATH.read_text())
 
 #sets the number of questions per session determined by which ever is lowest
 #NUM_QUESTIONS_PER_QUIZ or the length of the QUESTIONS dictionary
-def prepare_questions(questions, num_questions):
+def prepare_questions(path, num_questions):
+    #read toml file and pick-out the questions list
+    questions = tomllib.loads(path.read_text())["questions"]
     num_questions = min(num_questions, len(questions))
     #returns a list of random questions
     #k is the sample size determined by num_questions
-    return random.sample(list(questions.items()), k=num_questions)
+    return random.sample(questions, k=num_questions)
 
 
 #interacts with user display a question, labeling alternatives with a lowercase
@@ -43,15 +45,16 @@ def get_answer(question, alternatives):
     return labeled_alternatives[answer_label]
 
 
-#sets correct_answer as the correct answer within the alternatives
+#sets correct_answer as the answer in the question dictionary in the toml table
 #calls get_answer() and compare user answer to correct_answer
 #print outcome and return 1 for correct and 0 for incorrect for score keeping
-def ask_question(question, alternatives):
-    correct_answer = alternatives[0]
+def ask_question(question):
+    correct_answer = question["answer"]
+    alternatives = [question["answer"]] + question["alternatives"]
     #functionality to display alternatives in random order with each iteration
     ordered_alternatives = random.sample(alternatives, k=len(alternatives))
 
-    answer = get_answer(question, ordered_alternatives)
+    answer = get_answer(question["question"], ordered_alternatives)
     if answer == correct_answer:
         print("⭐ Correct! ⭐")
         return 1
@@ -63,16 +66,16 @@ def ask_question(question, alternatives):
 def run_quiz():
     #Preprocess: prepares list of questions
     questions = prepare_questions(
-        QUESTIONS, num_questions=NUM_QUESTIONS_PER_QUIZ
+        QUESTIONS_PATH, num_questions=NUM_QUESTIONS_PER_QUIZ
     )
     #Process: main loop
     #sets score counter to zero
     num_correct = 0
     #enumerate numbers each question
-    for num, (question, alternatives) in enumerate(questions, start=1):
+    for num, question in enumerate(questions, start=1):
         print(f"\nQuestion {num}:")
         #adds 1 for every correct answer returned by ask_questions()
-        num_correct += ask_question(question, alternatives)
+        num_correct += ask_question(question)
     
     #Post-process: print out score
     print(f"\nYou got {num_correct} correct out of {num} questions")
@@ -82,3 +85,8 @@ def run_quiz():
 #Run quiz
 if __name__ == "__main__":
     run_quiz()
+
+
+#Next-step
+#Step 5: Expand Your Quiz Functionality
+#https://realpython.com/python-quiz-application/#step-5-expand-your-quiz-functionality

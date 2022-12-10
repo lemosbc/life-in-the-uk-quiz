@@ -1,33 +1,26 @@
 # questions.toml
 
-"Which king, who succeeded Henry VIII, died when he was 15 years old" = [
-    "Edward VI",
-    "Charles I",
-    "Harold",
-    "Richard III"
-]
+[[questions]]
+question = "Which king, who succeeded Henry VIII, died when he was 15 years old"
+answer = "Edward VI"
+alternatives = ["Charles I", "Harold", "Richard III"]
 
-"Is the statement below TRUE or FALSE? Charles II marched into England with a Scottish army to reclaim his throne." = [
-    "True", "False"
-]
+[[questions]]
+question= "Is the statement below TRUE or FALSE? Charles II marched into England with a Scottish army to reclaim his throne."
+answer = "True"
+alternatives = ["False"]
 
-"Which country of the UK is not represented on the Union Flag" = [
-    "Wales", 
-    "Scotland", 
-    "Northern Ireland", 
-    "England"
-]
+[[questions]]
+question = "Which country of the UK is not represented on the Union Flag"
+answer = "Wales"
+alternatives = ["Scotland", "Northern Ireland", "England"]
 
-"Which of these people was a great British playwright" = [
-    "William Shakespeare", 
-    "Sir Francis Drake", 
-    "Geoffrey Chaucer", 
-    "William Caxton"
-]
+[[questions]]
+question = "Which of these people was a great British playwright"
+answer = "William Shakespeare"
+alternatives = ["Sir Francis Drake", "Geoffrey Chaucer", "William Caxton"]
 
-"When were the first professional football clubs formed" = [
-    "19th Century", 
-    "The Middle Ages", 
-    "17th Century", 
-    "20th Century"
-]
+[[questions]]
+question = "When were the first professional football clubs formed"
+answer = "19th Century"
+alternatives = ["The Middle Ages", "17th Century", "20th Century"]
