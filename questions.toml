@@ -2,25 +2,30 @@
 
 [[questions]]
 question = "Which king, who succeeded Henry VIII, died when he was 15 years old"
-answer = "Edward VI"
+answers = ["Edward VI"]
 alternatives = ["Charles I", "Harold", "Richard III"]
 
 [[questions]]
 question= "Is the statement below TRUE or FALSE? Charles II marched into England with a Scottish army to reclaim his throne."
-answer = "True"
+answers = ["True"]
 alternatives = ["False"]
 
 [[questions]]
 question = "Which country of the UK is not represented on the Union Flag"
-answer = "Wales"
+answers = ["Wales"]
 alternatives = ["Scotland", "Northern Ireland", "England"]
 
 [[questions]]
 question = "Which of these people was a great British playwright"
-answer = "William Shakespeare"
+answers = ["William Shakespeare"]
 alternatives = ["Sir Francis Drake", "Geoffrey Chaucer", "William Caxton"]
 
 [[questions]]
 question = "When were the first professional football clubs formed"
-answer = "19th Century"
+answers = ["19th Century"]
 alternatives = ["The Middle Ages", "17th Century", "20th Century"]
+
+[[questions]]
+question = "Which TWO of the following are famous British landmarks?"
+answers = ["The London Eye", "The Eden Project"]
+alternatives = ["Mont Blanc", "The Smithsonian"]
